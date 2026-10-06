@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年4月训练月报</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  :root {
+    --bg-primary: #0a0a0f;
+    --bg-card: #12121a;
+    --bg-card-hover: #1a1a28;
+    --accent-orange: #ff6b35;
+    --accent-yellow: #ffc107;
+    --accent-green: #00e676;
+    --accent-blue: #2979ff;
+    --accent-red: #ff1744;
+    --accent-purple: #aa00ff;
+    --text-primary: #e8e8ef;
+    --text-secondary: #9e9eb0;
+    --text-muted: #5a5a6e;
+    --border: #2a2a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1028 50%, #0f1a2e 100%);
+    overflow: hidden;
+    border-bottom: 2px solid var(--accent-orange);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(41,121,255,0.1) 0%, transparent 70%);
+    animation: pulse 5s ease-in-out infinite reverse;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent-orange);
+    background: rgba(255,107,53,0.1);
+    border: 1px solid rgba(255,107,53,0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #fff 0%, #ff6b35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+  .hero .meta-row {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .hero .meta-item .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+  }
+
+  /* Stats Row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 1200px;
+    margin: -30px auto 0;
+    padding: 0 40px;
+    position: relative;
+    z-index: 10;
+  }
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .stat-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-orange);
+  }
+  .stat-card .stat-value {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--accent-orange);
+    line-height: 1.1;
+  }
+  .stat-card .stat-unit {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+  .stat-card .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent-orange);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon {
+    font-size: 22px;
+  }
+
+  /* Table */
+  .table-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: rgba(255,107,53,0.08);
+    color: var(--accent-orange);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    color: var(--text-primary);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-card-hover); }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+  }
+  .badge-run { background: rgba(255,107,53,0.15); color: var(--accent-orange); }
+  .badge-cross { background: rgba(41,121,255,0.15); color: var(--accent-blue); }
+  .badge-quality { background: rgba(170,0,255,0.15); color: var(--accent-purple); }
+
+  /* Progress Bar */
+  .progress-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .progress-bar .fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s;
+  }
+  .fill-orange { background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow)); }
+  .fill-green { background: linear-gradient(90deg, var(--accent-green), #69f0ae); }
+  .fill-red { background: linear-gradient(90deg, var(--accent-red), #ff6b6b); }
+  .fill-blue { background: linear-gradient(90deg, var(--accent-blue), #82b1ff); }
+
+  /* Week Cards */
+  .week-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .week-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .week-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-orange);
+    margin-bottom: 12px;
+  }
+  .week-card .week-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .week-card .week-stat .label { color: var(--text-secondary); }
+  .week-card .week-stat .value { color: var(--text-primary); font-weight: 600; }
+
+  /* Pros / Cons */
+  .procon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .procon-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .procon-card.pros { border-top: 3px solid var(--accent-green); }
+  .procon-card.cons { border-top: 3px solid var(--accent-red); }
+  .procon-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .procon-card.pros h4 { color: var(--accent-green); }
+  .procon-card.cons h4 { color: var(--accent-red); }
+  .procon-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .procon-card ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(42,42,58,0.4);
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.7;
+  }
+  .procon-card ul li:last-child { border-bottom: none; }
+  .procon-card ul li::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .procon-card.pros ul li::before { background: var(--accent-green); }
+  .procon-card.cons ul li::before { background: var(--accent-red); }
+
+  /* Trend */
+  .trend-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .trend-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    flex: 1;
+    min-width: 160px;
+  }
+  .trend-chip .trend-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .trend-chip .trend-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .trend-chip .trend-arrow {
+    font-size: 14px;
+    margin-left: 6px;
+  }
+  .trend-up .trend-arrow { color: var(--accent-green); }
+  .trend-down .trend-arrow { color: var(--accent-red); }
+  .trend-stable .trend-arrow { color: var(--accent-yellow); }
+
+  /* Completion Meter */
+  .completion-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .completion-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .completion-card h4 {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .completion-card .pct {
+    font-size: 42px;
+    font-weight: 900;
+  }
+  .pct-low { color: var(--accent-red); }
+  .pct-mid { color: var(--accent-yellow); }
+  .pct-high { color: var(--accent-green); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Calendar */
+  .calendar-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 680px;
+  }
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: rgba(255,107,53,0.06);
+    border-bottom: 1px solid var(--border);
+  }
+  .calendar-header h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-orange);
+  }
+  .calendar-legend {
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+  .calendar-legend span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    padding: 8px;
+  }
+  .calendar-day-header {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 6px 0;
+  }
+  .calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    min-height: 56px;
+    padding: 4px 2px;
+    position: relative;
+    transition: transform 0.15s;
+  }
+  .calendar-day:hover { transform: scale(1.05); }
+  .calendar-day.empty { visibility: hidden; }
+  .calendar-day.rest { color: var(--text-muted); }
+  .calendar-day.has-run {
+    background: rgba(255,107,53,0.10);
+    color: var(--accent-orange);
+  }
+  .calendar-day.has-lsd {
+    background: rgba(170,0,255,0.10);
+    color: var(--accent-purple);
+  }
+  .calendar-day.has-quality {
+    background: rgba(255,193,7,0.10);
+    color: var(--accent-yellow);
+  }
+  .calendar-day.has-cross {
+    background: rgba(41,121,255,0.10);
+    color: var(--accent-blue);
+  }
+  .calendar-day .day-num {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .calendar-day .day-icon {
+    font-size: 16px;
+    margin-top: 2px;
+  }
+  .calendar-day .day-dist {
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 50px 20px 40px; }
+    .hero h1 { font-size: 32px; }
+    .stats-row { padding: 0 20px; grid-template-columns: repeat(2, 1fr); }
+    .container { padding: 30px 20px 60px; }
+    .procon-grid { grid-template-columns: 1fr; }
+    .week-cards { grid-template-columns: 1fr; }
+    .completion-section { grid-template-columns: repeat(2, 1fr); }
+    .calendar-legend { flex-wrap: wrap; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <span class="hero-label">月度报告</span>
+    <h1>2026年4月训练总结</h1>
+    <p class="subtitle">10公里破1小时备战 | 全月回顾</p>
+    <div class="meta-row">
+      <div class="meta-item"><span class="dot"></span>训练周期：4月1日 - 4月30日</div>
+      <div class="meta-item"><span class="dot" style="background:var(--accent-green)"></span>无重大伤病</div>
+      <div class="meta-item"><span class="dot" style="background:var(--accent-blue)"></span>12次训练</div>
+    </div>
+  </div>
+</div>
+
+<!-- Key Stats -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-value">54.36</div>
+    <div class="stat-unit">km</div>
+    <div class="stat-label">月总跑量</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">5:55</div>
+    <div class="stat-unit">/km</div>
+    <div class="stat-label">最佳节奏配速</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">6:46</div>
+    <div class="stat-unit">/km</div>
+    <div class="stat-label">平均跑步配速</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">10.83</div>
+    <div class="stat-unit">km</div>
+    <div class="stat-label">单次最长距离</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">174</div>
+    <div class="stat-unit">spm</div>
+    <div class="stat-label">最新步频</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Calendar -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📅</span> 4月训练日历</div>
+    <div class="calendar-wrapper">
+      <div class="calendar-header">
+        <h4>2026年4月</h4>
+        <div class="calendar-legend">
+          <span>🏃轻松跑</span>
+          <span>🏃‍♀️LSD</span>
+          <span>⚡质量课</span>
+          <span>🏊游泳</span>
+          <span>🚴椭圆机</span>
+          <span>😴休息</span>
+        </div>
+      </div>
+      <div class="calendar-grid">
+        <div class="calendar-day-header">一</div>
+        <div class="calendar-day-header">二</div>
+        <div class="calendar-day-header">三</div>
+        <div class="calendar-day-header">四</div>
+        <div class="calendar-day-header">五</div>
+        <div class="calendar-day-header">六</div>
+        <div class="calendar-day-header">日</div>
+
+        <div class="calendar-day empty"></div>
+        <div class="calendar-day empty"></div>
+        <div class="calendar-day has-quality"><span class="day-num">1</span><span class="day-icon">⚡</span><span class="day-dist">7.9km</span></div>
+        <div class="calendar-day rest"><span class="day-num">2</span></div>
+        <div class="calendar-day has-run"><span class="day-num">3</span><span class="day-icon">🏃</span><span class="day-dist">5.02km</span></div>
+        <div class="calendar-day rest"><span class="day-num">4</span></div>
+        <div class="calendar-day rest"><span class="day-num">5</span></div>
+
+        <div class="calendar-day rest"><span class="day-num">6</span></div>
+        <div class="calendar-day has-run"><span class="day-num">7</span><span class="day-icon">🏃</span><span class="day-dist">5km</span></div>
+        <div class="calendar-day rest"><span class="day-num">8</span></div>
+        <div class="calendar-day has-cross"><span class="day-num">9</span><span class="day-icon">🚴</span><span class="day-dist">50min</span></div>
+        <div class="calendar-day rest"><span class="day-num">10</span></div>
+        <div class="calendar-day rest"><span class="day-num">11</span></div>
+        <div class="calendar-day has-run"><span class="day-num">12</span><span class="day-icon">🏃</span><span class="day-dist">5km</span></div>
+
+        <div class="calendar-day rest"><span class="day-num">13</span></div>
+        <div class="calendar-day has-run"><span class="day-num">14</span><span class="day-icon">🏃</span><span class="day-dist">5.6km</span></div>
+        <div class="calendar-day rest"><span class="day-num">15</span></div>
+        <div class="calendar-day rest"><span class="day-num">16</span></div>
+        <div class="calendar-day has-cross"><span class="day-num">17</span><span class="day-icon">🏊</span><span class="day-dist">350m</span></div>
+        <div class="calendar-day has-lsd"><span class="day-num">18</span><span class="day-icon">🏃‍♀️</span><span class="day-dist">10.83km</span></div>
+        <div class="calendar-day rest"><span class="day-num">19</span></div>
+
+        <div class="calendar-day rest"><span class="day-num">20</span></div>
+        <div class="calendar-day rest"><span class="day-num">21</span></div>
+        <div class="calendar-day has-cross"><span class="day-num">22</span><span class="day-icon">🏊</span><span class="day-dist">900m</span></div>
+        <div class="calendar-day has-quality"><span class="day-num">23</span><span class="day-icon">⚡</span><span class="day-dist">5km</span></div>
+        <div class="calendar-day rest"><span class="day-num">24</span></div>
+        <div class="calendar-day has-cross"><span class="day-num">25</span><span class="day-icon">🏊</span><span class="day-dist">2h</span></div>
+        <div class="calendar-day has-lsd"><span class="day-num">26</span><span class="day-icon">🏃‍♀️</span><span class="day-dist">10km</span></div>
+
+        <div class="calendar-day rest"><span class="day-num">27</span></div>
+        <div class="calendar-day rest"><span class="day-num">28</span></div>
+        <div class="calendar-day rest"><span class="day-num">29</span></div>
+        <div class="calendar-day rest"><span class="day-num">30</span></div>
+        <div class="calendar-day empty"></div>
+        <div class="calendar-day empty"></div>
+        <div class="calendar-day empty"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Training Log Table -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📋</span> 全部训练记录</div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>类型</th>
+            <th>距离</th>
+            <th>时间</th>
+            <th>配速</th>
+            <th>心率</th>
+            <th>步频</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>4/1</td>
+            <td><span class="badge badge-quality">节奏跑+加速跑</span></td>
+            <td>7.9km</td>
+            <td>-</td>
+            <td>5:55节奏</td>
+            <td>159</td>
+            <td>175</td>
+            <td>节奏跑2x2km@5:55-5:57，加速跑800m@5:19</td>
+          </tr>
+          <tr>
+            <td>4/3</td>
+            <td><span class="badge badge-run">轻松跑</span></td>
+            <td>5.02km</td>
+            <td>33min</td>
+            <td>6:38</td>
+            <td>147</td>
+            <td>174</td>
+            <td>跑步机，无不适</td>
+          </tr>
+          <tr>
+            <td>4/7</td>
+            <td><span class="badge badge-run">轻松跑</span></td>
+            <td>5.0km</td>
+            <td>35min</td>
+            <td>6:58</td>
+            <td>150</td>
+            <td>166</td>
+            <td>生理期第2天，闷热，间歇课降级</td>
+          </tr>
+          <tr>
+            <td>4/9</td>
+            <td><span class="badge badge-cross">交叉+力量</span></td>
+            <td>-</td>
+            <td>50min</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>椭圆机30min + 力量20min（靠墙蹲/单腿硬拉/双腿硬拉）</td>
+          </tr>
+          <tr>
+            <td>4/12</td>
+            <td><span class="badge badge-run">轻松跑</span></td>
+            <td>5.0km</td>
+            <td>34min</td>
+            <td>6:45</td>
+            <td>145</td>
+            <td>171</td>
+            <td>下雨，跑步机，生理期第7天</td>
+          </tr>
+          <tr>
+            <td>4/14</td>
+            <td><span class="badge badge-run">轻松跑</span></td>
+            <td>5.6km</td>
+            <td>37min</td>
+            <td>6:33</td>
+            <td>155</td>
+            <td>173</td>
+            <td>节奏跑降级，次日左腓骨头酸痛</td>
+          </tr>
+          <tr>
+            <td>4/17</td>
+            <td><span class="badge badge-cross">游泳</span></td>
+            <td>350m</td>
+            <td>1h21min</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>效率低，休息时间长</td>
+          </tr>
+          <tr>
+            <td>4/18</td>
+            <td><span class="badge badge-run">LSD</span></td>
+            <td>10.83km</td>
+            <td>1:12:29</td>
+            <td>6:42</td>
+            <td>154</td>
+            <td>172</td>
+            <td>首次突破10km，户外跑，生理期回流</td>
+          </tr>
+          <tr>
+            <td>4/22</td>
+            <td><span class="badge badge-cross">游泳</span></td>
+            <td>900m</td>
+            <td>1h26min</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>比4/17距离提升至900m</td>
+          </tr>
+          <tr>
+            <td>4/23</td>
+            <td><span class="badge badge-quality">质量课</span></td>
+            <td>5.01km</td>
+            <td>31min</td>
+            <td>6:24</td>
+            <td>161</td>
+            <td>170</td>
+            <td>400m加速跑配速破5:00，心率飙至178-179</td>
+          </tr>
+          <tr>
+            <td>4/25</td>
+            <td><span class="badge badge-cross">游泳</span></td>
+            <td>-</td>
+            <td>2h</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>长时间游泳，无不适</td>
+          </tr>
+          <tr>
+            <td>4/26</td>
+            <td><span class="badge badge-run">LSD</span></td>
+            <td>10.0km</td>
+            <td>64min</td>
+            <td>6:45</td>
+            <td>157</td>
+            <td>174</td>
+            <td>无不适，状态稳定</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Weekly Breakdown -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> 周度分解</div>
+    <div class="week-cards">
+      <div class="week-card">
+        <h4>第1周（4/1-4/5）</h4>
+        <div class="week-stat"><span class="label">跑量</span><span class="value">12.92 km</span></div>
+        <div class="week-stat"><span class="label">训练次数</span><span class="value">2次（1质量课 + 1轻松跑）</span></div>
+        <div class="week-stat"><span class="label">最佳配速</span><span class="value">5:55 /km</span></div>
+        <div class="week-stat"><span class="label">平均心率</span><span class="value">153 bpm</span></div>
+        <div class="week-stat"><span class="label">平均步频</span><span class="value">175 spm</span></div>
+        <div class="progress-bar"><div class="fill fill-orange" style="width:45%"></div></div>
+      </div>
+      <div class="week-card">
+        <h4>第2周（4/6-4/12）</h4>
+        <div class="week-stat"><span class="label">跑量</span><span class="value">10 km</span></div>
+        <div class="week-stat"><span class="label">训练次数</span><span class="value">3次（2跑 + 1交叉）</span></div>
+        <div class="week-stat"><span class="label">平均配速</span><span class="value">6:52 /km</span></div>
+        <div class="week-stat"><span class="label">平均心率</span><span class="value">148 bpm</span></div>
+        <div class="week-stat"><span class="label">平均步频</span><span class="value">169 spm</span></div>
+        <div class="progress-bar"><div class="fill fill-red" style="width:32%"></div></div>
+      </div>
+      <div class="week-card">
+        <h4>第3周（4/13-4/19）</h4>
+        <div class="week-stat"><span class="label">跑量</span><span class="value">16.43 km</span></div>
+        <div class="week-stat"><span class="label">训练次数</span><span class="value">4次（2跑 + 1游泳 + 1LSD）</span></div>
+        <div class="week-stat"><span class="label">平均配速</span><span class="value">6:37 /km</span></div>
+        <div class="week-stat"><span class="label">平均心率</span><span class="value">155 bpm</span></div>
+        <div class="week-stat"><span class="label">平均步频</span><span class="value">173 spm</span></div>
+        <div class="progress-bar"><div class="fill fill-orange" style="width:71%"></div></div>
+      </div>
+      <div class="week-card">
+        <h4>第4周（4/20-4/26）</h4>
+        <div class="week-stat"><span class="label">跑量</span><span class="value">15.01 km</span></div>
+        <div class="week-stat"><span class="label">训练次数</span><span class="value">5次（1质量课 + 2游泳 + 2LSD）</span></div>
+        <div class="week-stat"><span class="label">平均配速</span><span class="value">6:32 /km</span></div>
+        <div class="week-stat"><span class="label">平均心率</span><span class="value">159 bpm</span></div>
+        <div class="week-stat"><span class="label">平均步频</span><span class="value">172 spm</span></div>
+        <div class="progress-bar"><div class="fill fill-orange" style="width:57%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completion Rate -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> 计划完成率</div>
+    <div class="completion-section">
+      <div class="completion-card">
+        <h4>第1周 计划 vs 实际</h4>
+        <div class="pct pct-mid">45%</div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">计划：~30km | 实际：12.92km<br>节奏跑质量课完成出色！其余日未执行</p>
+        <div class="progress-bar" style="margin-top:12px"><div class="fill fill-orange" style="width:45%"></div></div>
+      </div>
+      <div class="completion-card">
+        <h4>第2周 计划 vs 实际</h4>
+        <div class="pct pct-low">32%</div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">计划：~30km | 实际：10km<br>生理期 + 闷热天气影响</p>
+        <div class="progress-bar" style="margin-top:12px"><div class="fill fill-red" style="width:32%"></div></div>
+      </div>
+      <div class="completion-card">
+        <h4>第3周 计划 vs 实际</h4>
+        <div class="pct pct-mid">71%</div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">计划：~34.5km | 实际：~24.5km<br>LSD超额完成，节奏跑降级</p>
+        <div class="progress-bar" style="margin-top:12px"><div class="fill fill-orange" style="width:71%"></div></div>
+      </div>
+      <div class="completion-card">
+        <h4>第4周 计划 vs 实际</h4>
+        <div class="pct pct-mid">57%</div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">计划：~37km | 实际：~21km<br>质量课+LSD执行，轻松跑不足</p>
+        <div class="progress-bar" style="margin-top:12px"><div class="fill fill-orange" style="width:57%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trends -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📈</span> 关键趋势</div>
+    <div class="trend-row">
+      <div class="trend-chip trend-up">
+        <div class="trend-label">轻松跑配速</div>
+        <div class="trend-value">6:58 → 6:45 <span class="trend-arrow">↑ 快13秒/km</span></div>
+      </div>
+      <div class="trend-chip trend-up">
+        <div class="trend-label">步频</div>
+        <div class="trend-value">166 → 174 <span class="trend-arrow">↑ +8 spm</span></div>
+      </div>
+      <div class="trend-chip trend-up">
+        <div class="trend-label">单次最长跑</div>
+        <div class="trend-value">5km → 10.83km <span class="trend-arrow">↑ +117%</span></div>
+      </div>
+      <div class="trend-chip trend-stable">
+        <div class="trend-label">平均心率</div>
+        <div class="trend-value">150 → 157 <span class="trend-arrow">→ 稳定</span></div>
+      </div>
+      <div class="trend-chip trend-up">
+        <div class="trend-label">月跑量</div>
+        <div class="trend-value">12.92km → 54.36km <span class="trend-arrow">↑ 4.2倍</span></div>
+      </div>
+      <div class="trend-chip trend-up">
+        <div class="trend-label">质量课配速</div>
+        <div class="trend-value">5:55 → 5:57 <span class="trend-arrow">→ 比赛配速区</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pros & Cons -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⚡</span> 优点与不足</div>
+    <div class="procon-grid">
+      <div class="procon-card pros">
+        <h4>优点</h4>
+        <ul>
+          <li><strong>节奏跑突破：</strong>4/1节奏跑2x2km@5:55-5:57/km，首次精准命中比赛目标配速，证明有能力维持目标配速</li>
+          <li><strong>距离突破：</strong>连续两次LSD达10km级别（4/18 10.83km、4/26 10km），比赛距离不再是障碍</li>
+          <li><strong>步频稳步提升：</strong>166 → 174 spm，逼近175目标，降低膝伤风险</li>
+          <li><strong>有氧能力增强：</strong>轻松跑配速从6:58提升到6:33，心率保持在有氧区间（145-157）</li>
+          <li><strong>生理期管理得当：</strong>经期主动降强度，交叉训练替代，不硬撑</li>
+          <li><strong>速度潜力展现：</strong>4/23加速跑配速破5:00，心率178-179，速度储备充足</li>
+          <li><strong>无伤病：</strong>4/14腓骨头酸痛自行缓解，后续训练未复发</li>
+          <li><strong>游泳进步：</strong>从350m→900m→2h长游，游泳训练量稳步增长</li>
+        </ul>
+      </div>
+      <div class="procon-card cons">
+        <h4>不足</h4>
+        <ul>
+          <li><strong>计划完成率偏低：</strong>月跑量约54km vs 计划约101.5km，仅完成约53%</li>
+          <li><strong>轻松跑频率不够：</strong>多周仅2次轻松跑，有氧基础积累不足</li>
+          <li><strong>力量训练严重不足：</strong>仅1次记录（4/9），远低于每周2次计划，臀腿和核心力量仍薄弱</li>
+          <li><strong>第4周空窗：</strong>4/27-4/30无训练记录，关键的强度峰值周被浪费</li>
+          <li><strong>游泳效率低：</strong>900m用时1h26min，含大量休息时间</li>
+          <li><strong>记录缺失多：</strong>多个计划训练日（周三/周四）无记录</li>
+          <li><strong>比赛配速持续力未验证：</strong>4/1节奏跑仅2x2km，距离10km比赛配速持续跑仍有差距</li>
+          <li><strong>周训练结构未严格执行：</strong>计划的周二/四/六跑步模式未稳定落实</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intensity Distribution -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🏋️</span> 训练类型分布</div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>类型</th>
+            <th>次数</th>
+            <th>占比</th>
+            <th>训练量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>轻松跑</td>
+            <td>3</td>
+            <td>27%<div class="progress-bar"><div class="fill fill-blue" style="width:27%"></div></div></td>
+            <td>15.62km</td>
+          </tr>
+          <tr>
+            <td>LSD长跑</td>
+            <td>2</td>
+            <td>18%<div class="progress-bar"><div class="fill fill-orange" style="width:18%"></div></div></td>
+            <td>20.83km</td>
+          </tr>
+          <tr>
+            <td>质量课</td>
+            <td>2</td>
+            <td>18%<div class="progress-bar"><div class="fill fill-red" style="width:18%"></div></div></td>
+            <td>12.91km</td>
+          </tr>
+          <tr>
+            <td>游泳</td>
+            <td>3</td>
+            <td>25%<div class="progress-bar"><div class="fill fill-green" style="width:25%"></div></div></td>
+            <td>1,250m + 2h</td>
+          </tr>
+          <tr>
+            <td>交叉+力量</td>
+            <td>1</td>
+            <td>9%<div class="progress-bar"><div class="fill fill-green" style="width:9%"></div></div></td>
+            <td>椭圆机30min + 力量20min</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Outlook -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔮</span> 5月展望与比赛准备</div>
+    <div class="week-cards" style="grid-template-columns:1fr">
+      <div class="week-card" style="border-left:3px solid var(--accent-orange)">
+        <h4>比赛日：5月16日（周六）7:30 AM | 约16天后</h4>
+        <p style="font-size:14px;color:var(--text-secondary);margin-top:12px;line-height:1.8">
+          <strong>当前状态：</strong>好消息是4/1节奏跑已验证比赛配速能力（2x2km@5:55-5:57），LSD距离也达到比赛水平。步频174接近目标，有氧基础持续提升。<br>
+          <strong>但仍需加强：</strong>10km持续比赛配速跑尚未完成，目前最长仅2km节奏跑段。需要更长距离的目标配速练习。<br><br>
+          <strong>5月关键课表：</strong><br>
+          - 4/28（周二）：目标配速跑 5x1K @ 5:55-5:59 — <em>必须执行</em><br>
+          - 5/2（周六）：稳态跑 8K @ 6:20-6:35 — <em>比赛节奏练习</em><br>
+          - 5/5（周二）：节奏跑 4x800m @ 5:55-6:00 — <em>最后一次质量课</em><br>
+          - 5/16（周六）：<strong>10公里比赛 — 目标破1小时</strong><br><br>
+          <strong style="color:var(--accent-yellow)">关键风险：</strong>如果4/27-5/3继续无训练，强度峰值周将被浪费。需要立即恢复训练，至少完成4/28配速跑和5/2稳态跑。
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  由 RunCoach-AI 生成 | 数据基于已记录训练日志 | 2026-04-30
+</div>
+
+</body>
+</html>
